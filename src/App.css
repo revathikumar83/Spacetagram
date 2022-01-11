@@ -1,0 +1,28 @@
+.App {
+  text-align: center;
+}
+
+
+header{
+ 
+  text-align: center;
+  text-transform: capitalize;
+  border: 1px solid rgb(248, 245, 245);
+  padding: 10px;
+  margin-bottom: 0px;
+  font-size: 25px;
+  font-weight: bold;
+  position: sticky;
+  background-color: #b4cfeea4;
+  font-family:'cursive';
+  color: rgb(80, 61, 67);
+  
+}
+main{
+  position: absolute;
+  top: 100px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: auto;
+}
