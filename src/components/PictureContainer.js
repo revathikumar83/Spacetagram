@@ -11,12 +11,17 @@ import {
   } from 'react-bootstrap';
   
   import Rating from './Rating';
+  import Loading from './Loading';
 
   const ImageContainer =()=>{
 
   const [data, setData] = useState([]);
+  const[loading,setLoading]=useState(false);
 
   const [likedBands, updateLikedBands] = useState([]);
+  
+
+
 
   const styles = {
       row: {
@@ -44,6 +49,7 @@ import {
           const datas = res.data;
 
           setData(datas);
+          setLoading(true);
       } catch (error) {
           console.log(error);
       }
@@ -63,26 +69,25 @@ import {
       fetchData();
   }, []);
 
-
-
+  
 
     return(
-        <Container fluid = {true} style = {styles.col} >
+        <div>
+    
+
+        {
+            !loading ? ( 
+                <Loading/>
+            ) :
+        <Container fluid = {true} style = {styles.col}  >
         <Row xs = {1}
         sm = {2}
         md = {3}
         lg = {4}
         xl = {4}> 
-        {
-            data.length === 0 ? ( 
-                <div >
-                null 
-                </div>
-            ) : (
-                x.map((item) => ( <
-                    Col style = {
-                        styles.row
-                    } >
+         
+         { x.map((item) => (
+                    <Col style = {styles.row }>
                     
                     <Card style = {styles.br}  key = {item.id } >
                     
@@ -90,7 +95,7 @@ import {
                     style = {{ borderRadiusTop: 2 }}
                     src = {item.img_src}
                     height = '200'
-                    width = '200' / >
+                    width = '200' />
                     
                     <Card.Body>
                     
@@ -112,6 +117,7 @@ import {
                     <Rating 
                     key = {item.id }
                     item ={item} 
+                    date={item.rover.launch_date}
                     updateLikedBands = {updateLikedBands}
                     likedBands = {likedBands}
   
@@ -121,11 +127,15 @@ import {
                     </Card.Body>
                     </Card > 
                     </Col> 
-                ))
-            )
-        } 
+                    ))
+          } 
         </Row> 
         </Container > 
+
+       
+        } 
+        
+        </div>
     )
 
 }
